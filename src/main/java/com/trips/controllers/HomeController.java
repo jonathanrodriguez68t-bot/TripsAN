@@ -29,7 +29,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@GetMapping("/")
+	@GetMapping("/listado")
 	public String MostrarListado(Model model) {
 		List<String> lista = new LinkedList<String>();
 		lista.add("En la montaña");
