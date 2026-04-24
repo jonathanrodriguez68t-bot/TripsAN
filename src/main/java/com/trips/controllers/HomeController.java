@@ -58,7 +58,7 @@ public class HomeController {
 	public String mostrarDetalle(Model model) {
 		Trip trip = new Trip();
 		trip.setNombre("Rapel en Volcatenango");
-		trip.setDescripcion("Aventa rapel en un circuito conectado en las...");
+		trip.setDescripcion("Aventa rapel en un listado pero pequeño circuito conectado en las...");
 		trip.setFecha(new Date());
 		trip.setCosto(10.0);
 
@@ -67,8 +67,9 @@ public class HomeController {
 		return "detalle";
 
 	}
-
+//Cambios 
 	private List<Trip> getTrips() {
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		List<Trip> lista = new LinkedList<Trip>();
 		try {
