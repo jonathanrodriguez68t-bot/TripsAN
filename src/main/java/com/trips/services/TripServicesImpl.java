@@ -1,61 +1,24 @@
-package com.trips.controllers;
+package com.trips.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Service;
 
 import com.trips.models.Trip;
-import com.trips.services.ITripServices;
 
-
-@Controller
-
-public class HomeController {
+@Service
+public class TripServicesImpl implements ITripServices {
 	
-	
-	@Autowired
-    private ITripServices tripServices;
-	
-	
-	@GetMapping("/")
-	public String mostrarHome (Model model) {
+	List<Trip> lista = null;
+	public TripServicesImpl() {
 		
-		String trip = "Rapel en el Volcan";
-		Date fechaPublicacion = new Date();
-		double costo = 5.0;
-		boolean vigente= true;
-
-		model.addAttribute ("trip", trip); 
-		model.addAttribute("fechaPublicacion", fechaPublicacion); 
-		model.addAttribute ("costo", costo); 
-		model.addAttribute ("vigente", vigente);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		
-		return "home";
-	}
-	
-	@GetMapping("/tabla")
-	public String mostrarTabla(Model model) {
-	    List<Trip> lista = tripServices.buscarTodo();
-	    model.addAttribute("trips", lista);
-	    return "tabla";
-	}
-	
-	@GetMapping("/listado")
-    public String mostrarListado(Model model) {
-        model.addAttribute("listadoTrips", getTrips());
-        return "listado";
-    }
-
-	private List<Trip> getTrips() {
-	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	    List<Trip> lista = new LinkedList<Trip>();
+	    lista = new LinkedList<Trip>();
+	    
 	    try {
 	        Trip trip1 = new Trip();
 	        trip1.setId(1);
@@ -101,20 +64,22 @@ public class HomeController {
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	    }
-	    return lista;
+	    
 	}
-	
-	@GetMapping("/detalle")
-	public String mostrarDetalle(Model model) {
-		Trip trip = new Trip();
-		trip.setNomTrip("Rapel en Volcatenango");
-		trip.setDescripcion("Aventa rapel en un circuito conectado en las...");
-		trip.setFecha(new Date());
-		trip.setCosto(10.0);
-		model.addAttribute("trip" , trip);
-		
-		return "detalle";
+
+	@Override
+	public List<Trip> buscarTodo() {
+		// TODO Auto-generated method stub
+		return lista;
 	}
-	
-	
+
+	@Override
+	public Trip buscarPorId(Integer idTrip) {
+		// TODO Auto-generated method stub
+		for(Trip trip : lista)
+			if(trip.getId() == idTrip)
+				return trip;
+				
+		return null;
+	}
 }
