@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Trip {
 	private Integer id;
-	private String nomTrip;
+	private String nombre;
 	private String descripcion;
 	private double costo; 
 	private int calificacion;
@@ -13,17 +13,27 @@ public class Trip {
 	private boolean activo;
 	private Date fecha;
 	private int idCategoria;
+	private Integer destacado;
+
+	
+
+	public Integer getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
+	}
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNomTrip() {
-		return nomTrip;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNomTrip(String nomTrip) {
-		this.nomTrip = nomTrip;
+	public void setNombre(String nomTrip) {
+		this.nombre = nomTrip;
 	}
 	public String getDescripcion() {
 		return descripcion;

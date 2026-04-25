@@ -25,6 +25,7 @@
                             <th>Descripción</th>
                             <th>Destacado</th>
                             <th>Detalle</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +35,7 @@
                             </td>
                             <td th:text="${trip.imagen}"></td>
                             <td th:text="${trip.id}"></td>
-                            <td th:text="${trip.nomTrip}"></td>
+                            <td th:text="${trip.nombre}"></td>
                             <td th:text="${#dates.format(trip.fecha, 'dd-MM-yyyy')}"></td>
                             <td th:text="${'$' + trip.costo}"></td>
                             <td th:text="${trip.descripcion}"></td>
