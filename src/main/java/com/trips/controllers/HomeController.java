@@ -7,10 +7,11 @@ import java.util.Date;
 import java.util.LinkedList;
 
 import com.trips.TripsAnApplication;
+import com.trips.services.IRolService;
 import com.trips.services.ITripServices;
+import com.trips.services.rolServiceImpl;
 import com.trips.services.tripServicesImpl;
-
-
+import com.trips.models.Rol;
 import com.trips.models.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class HomeController {
 
 	@Autowired
 	private ITripServices tripServices;
+
+	@Autowired
+	private IRolService rolService;
 
 	HomeController(TripsAnApplication TripsAnApplication) {
 		this.TripsAnApplication = TripsAnApplication;
@@ -87,4 +91,10 @@ public class HomeController {
 		return "tabla";
 	}
 
+	@GetMapping("/tablaRoles")
+	public String mostrarTablaRol(Model model) {
+		List<Rol> lista = rolService.buscarTodo();
+		model.addAttribute("roles", lista);
+		return "tablaRoles";
+	}
 }
