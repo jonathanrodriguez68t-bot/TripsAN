@@ -67,15 +67,15 @@
       <div class="container"> 
         <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
         <hr>
-        <div class="row">
+        <div class="row" th:each="trip : ${trips}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" src="images/logo1.png" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${trip.imagen})}" alt="Generic placeholder image" width="200" height="190">          
           </div>
           <div class="col-md-9">
-            <h2>Senderismo</h2>
+            <h2 th:text="${trip.nombre}"></h2>
             <h6 class="card-title"><strong>Categoría: </strong> <span>En la montaña</span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span>2022-01-01 </span></h6>                
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${trip.fecha}"></span></h6>                
+            <p th:text="${trip.descripcion}"></p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>            
           </div>
         </div>  

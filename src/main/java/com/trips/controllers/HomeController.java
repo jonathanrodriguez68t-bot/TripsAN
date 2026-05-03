@@ -21,28 +21,20 @@ public class HomeController {
 	
 	
 	@Autowired
-    private ITripServices tripServices;
-	
-	
-	@GetMapping("/")
-	public String mostrarHome (Model model) {
-		
-		String trip = "Rapel en el Volcan";
-		Date fechaPublicacion = new Date();
-		double costo = 5.0;
-		boolean vigente= true;
+	private ITripServices tripService;
 
-		model.addAttribute ("trip", trip); 
-		model.addAttribute("fechaPublicacion", fechaPublicacion); 
-		model.addAttribute ("costo", costo); 
-		model.addAttribute ("vigente", vigente);
-		
-		return "home";
+	@GetMapping("/")
+	public String mostrarHome(Model model) {
+
+	    List<Trip> lista = tripService.buscarTodo();
+	    model.addAttribute("trips", lista);
+
+	    return "home";
 	}
 	
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model model) {
-	    List<Trip> lista = tripServices.buscarTodo();
+	    List<Trip> lista = tripService.buscarTodo();
 	    model.addAttribute("trips", lista);
 	    return "tabla";
 	}
