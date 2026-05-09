@@ -17,7 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+	/*
+	//Cambios 
+	///private List<Trip> getTrips() {
+	/// }
+	*/
 
 @Controller
 public class HomeController {
@@ -36,17 +42,8 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String mostrarhome(Model model) {
-
-		String trip = "Rapel en el Volcan";
-		Date fechaPublicacion = new Date();
-		double costo = 5.0;
-		boolean vigente = true;
-
-		model.addAttribute("trip", trip);
-		model.addAttribute("fechaPublicacion", fechaPublicacion);
-		model.addAttribute("costo", costo);
-		model.addAttribute("vigente", vigente);
-
+		List<Trip> lista = tripServices.buscarTodo();
+		model.addAttribute("trips", lista);
 		return "home";
 
 	}
@@ -64,26 +61,6 @@ public class HomeController {
 
 		return "listado";
 	}
-
-	@GetMapping("/detalle")
-	public String mostrarDetalle(Model model) {
-		Trip trip = new Trip();
-		trip.setNombre("Rapel en Volcatenango");
-		trip.setDescripcion("Aventa rapel en un listado pero pequeño circuito conectado en las...");
-		trip.setFecha(new Date());
-		trip.setCosto(10.0);
-
-		model.addAttribute("trip", trip);
-
-		return "detalle";
-
-	}
-	/*
-	//Cambios 
-	///private List<Trip> getTrips() {
-	/// }
-	*/
-
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model model) {
 		List<Trip> lista = tripServices.buscarTodo();
