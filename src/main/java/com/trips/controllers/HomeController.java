@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.trips.models.Trip;
 import com.trips.services.ITripServices;
@@ -23,19 +24,21 @@ public class HomeController {
 	@Autowired
     private ITripServices tripServices;
 	
+	public String verDetalle (@PathVariable("id") int idTrip, Model model) {
+		Trip trip =tripServices.buscarPorId(idTrip);
+		System.out.println("id + idTrip");
+		model.addAttribute("trip" + trip);
+		
+		
+		return "trip/detalle";
+	}
+	
 	
 	@GetMapping("/")
 	public String mostrarHome (Model model) {
 		
-		String trip = "Rapel en el Volcan";
-		Date fechaPublicacion = new Date();
-		double costo = 5.0;
-		boolean vigente= true;
-
-		model.addAttribute ("trip", trip); 
-		model.addAttribute("fechaPublicacion", fechaPublicacion); 
-		model.addAttribute ("costo", costo); 
-		model.addAttribute ("vigente", vigente);
+		List<Trip> lista = tripServices.buscarTodo();
+		model.addAttribute("trips", lista);
 		
 		return "home";
 	}

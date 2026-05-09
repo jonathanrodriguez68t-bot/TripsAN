@@ -6,24 +6,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.trips.models.Categoria;
+
 @Controller
 @RequestMapping(value="/categorias")
 public class CategoriaTripController {
 
-    //@RequestMapping(value = "/index", method = RequestMethod.GET)
+    
     @GetMapping("/index")
     public String mostrarIndex() {
         
         return "categoriasTrip/listCategoria";
     }
 
-    //@RequestMapping(value = "/create", method = RequestMethod.GET)
     @GetMapping("/create")
-    public String crear() {
+    public String crear(Categoria categoria) { 
         return "categoriasTrip/formCategoria"; 
     }
 
-  //@RequestMapping(value = "/save", method = RequestMethod.POST)
     @PostMapping("/save")
     public String guardar(@RequestParam("nombre") String nombre, @RequestParam("descripcion") String descripcion) {
         System.out.println("Nombre Categoria: " + nombre);
