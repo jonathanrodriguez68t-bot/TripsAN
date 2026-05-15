@@ -73,4 +73,9 @@ public class tripServicesImpl implements ITripServices {
         return null;
     }
 
+	@Override
+	public void guardar(Trip trip){
+		lista.add(trip);
+	}
+
 }
