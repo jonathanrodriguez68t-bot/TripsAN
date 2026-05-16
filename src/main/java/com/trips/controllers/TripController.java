@@ -31,8 +31,11 @@ public class TripController {
 	private ITripServices tripServices;
 
 	@GetMapping("/create")
-	public String crear() {
-
+	public String crear(Model model) { 
+        
+		
+		model.addAttribute("trip", new Trip()); 
+		
 		return "trips/formTrip";
 	}
 
